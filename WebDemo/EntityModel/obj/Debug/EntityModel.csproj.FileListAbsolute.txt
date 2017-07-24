@@ -1,0 +1,10 @@
+D:\Tai lieu\ASP.NET CORE\WebDemo\EntityModel\bin\Debug\EntityModel.dll
+D:\Tai lieu\ASP.NET CORE\WebDemo\EntityModel\bin\Debug\EntityModel.pdb
+D:\Tai lieu\ASP.NET CORE\WebDemo\EntityModel\obj\Debug\EntityModel.csprojResolveAssemblyReference.cache
+D:\Tai lieu\ASP.NET CORE\WebDemo\EntityModel\obj\Debug\EntityModel.dll
+D:\Tai lieu\ASP.NET CORE\WebDemo\EntityModel\obj\Debug\EntityModel.pdb
+E:\Tai lieu\WebDemo\EntityModel\bin\Debug\EntityModel.dll
+E:\Tai lieu\WebDemo\EntityModel\bin\Debug\EntityModel.pdb
+E:\Tai lieu\WebDemo\EntityModel\obj\Debug\EntityModel.dll
+E:\Tai lieu\WebDemo\EntityModel\obj\Debug\EntityModel.pdb
+E:\Tai lieu\WebDemo\EntityModel\obj\Debug\EntityModel.csprojResolveAssemblyReference.cache

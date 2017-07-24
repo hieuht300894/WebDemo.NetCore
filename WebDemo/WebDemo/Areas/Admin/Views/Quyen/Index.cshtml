@@ -1,0 +1,56 @@
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+    @model IEnumerable<EntityModel.Models.xQuyen>
+}
+
+<!-- Bootstrap 3.3.6 -->
+<link href="~/Admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+<!-- DataTables -->
+<link rel="stylesheet" href="~/Admin/plugins/datatables/dataTables.bootstrap.css">
+<!-- Theme style -->
+<link rel='stylesheet' href='~/Admin/dist/css/AdminLTE.min.css'>
+<!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
+<link rel='stylesheet' href='~/Admin/dist/css/skins/_all-skins.min.css'>
+
+<!-- jQuery 2.2.3 -->
+<script src="~/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src='~/Admin/bootstrap/js/bootstrap.min.js'></script>
+<!-- DataTables -->
+<script src="~/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src='~/Admin/plugins/slimScroll/jquery.slimscroll.min.js'></script>
+<!-- FastClick -->
+<script src='~/Admin/plugins/fastclick/fastclick.js'></script>
+<!-- AdminLTE App -->
+<script src='~/Admin/dist/js/app.min.js'></script>
+<!-- AdminLTE for demo purposes -->
+<script src='~/Admin/dist/js/demo.js'></script>
+<!-- jquery-confirm files -->
+<script type="text/javascript" src="~/Admin/js/js-confirm/js/jquery-confirm.js"></script>
+
+
+<div class="box">
+    <div class="box-body">@{Html.RenderPartial("_baseButton");}</div>
+    <div class="box-body" id="table_content">
+    </div>
+</div>
+
+@section footer{
+    <script>var controller = '/quyen';</script>
+    <script src="~/Admin/js/js-custom/mainfuction.js"></script>
+    <script src="~/Admin/js/js-custom/my_custom_datatable.js"></script>
+    <script>
+        $(document).ready(function () {
+            _reload($('#table_content'));
+            customTable();
+        });
+
+    </script>
+
+}

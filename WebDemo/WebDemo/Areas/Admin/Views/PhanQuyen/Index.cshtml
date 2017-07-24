@@ -1,0 +1,42 @@
+@using WebDemo.Module;
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
+}
+
+@model IEnumerable<EntityModel.Models.xChiTietQuyen>
+
+<!-- DataTables -->
+<link rel="stylesheet" href="~/Admin/plugins/datatables/dataTables.bootstrap.css">
+
+
+<!-- jQuery 2.2.3 -->
+<script src="~/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<!-- DataTables -->
+<script src="~/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- jquery-confirm files -->
+<script type="text/javascript" src="~/Admin/js/js-confirm/js/jquery-confirm.js"></script>
+
+<div class="box">
+    <div class="box-body">@{Html.RenderPartial("_baseButton");}</div>
+    <div class="box-body" id="table_content" data-path="/admin/phanquyen/danhsach"></div>
+</div>
+
+@section footer{
+    <script src="~/Admin/js/js-custom/mainfuction.js"></script>
+<script>controller = '/phanquyen';</script>
+    <script src="~/Admin/js/js-custom/my_custom_datatable.js"></script>
+    <script>
+        var colIndexs = [1];
+        var colLength = colIndexs.length;
+
+        $(document).ready(function () {
+            _reload($('#table_content'));
+        });
+
+        $(document).ajaxComplete(function () {
+            visibleColumn(colIndexs, colLength);
+        });
+    </script>
+}

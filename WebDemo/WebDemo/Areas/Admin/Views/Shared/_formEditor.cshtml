@@ -1,0 +1,60 @@
+﻿@using WebDemo.Module;
+@using System.Collections.Generic;
+@using Microsoft.AspNetCore.Mvc;
+
+@model object
+
+@{
+    Dictionary<string, object> dic = Model.GetValue();
+
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header' style='text-align:center'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Đóng'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+                <h2 class='modal-title' id='popupModalLabel'><b></b></h2>
+            </div>
+            <div class='modal-body'>
+                <form class='form-horizontal'>
+                    <div class='box-body'>
+                        @foreach (var item in dic)
+                        {
+                            if (item.Key.Equals("keyid"))
+                            {
+                                <div class='form-group'>
+                                    <div class='col-sm-10'>@Html.Hidden(item.Key, item.Value, new { @class = "form-control" })</div>
+                                </div>
+                            }
+                            else if (item.Key.Equals("code"))
+                            {
+                                <div class='form-group'>
+                                    @Html.Label(item.Key, Model.Translate(item.Key), new { @class = "col-sm-2 control-label" })
+                                    <div class='col-sm-10'>@Html.TextBox(item.Key, item.Value, null, new { @class = "form-control", @disabled = "disabled" })</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class='form-group'>
+                                    @Html.Label(item.Key, Model.Translate(item.Key), new { @class = "col-sm-2 control-label" })
+                                    <div class='col-sm-10'>@Html.TextBox(item.Key, item.Value, null, new { @class = "form-control" })</div>
+                                </div>
+                            }
+                        }
+                    </div>
+                </form>
+            </div>
+            <div class='modal-footer'>
+                <div class="form-group">
+                    <div class="margin">
+                        <button type='button' class='btn btn-primary' data-dismiss='modal' onclick='_save(this, event, @dic["keyid"])'>Lưu</button>
+                        <button type='button' class='btn btn-primary' onclick='_saveAndAdd(this, event, @dic["keyid"])'>Lưu và thêm mới</button>
+                        <button type='button' class='btn btn-secondary' data-dismiss='modal'>Hủy bỏ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,11 @@
+E:\Tai lieu\WebDemo\WebDemo\bin\Debug\netcoreapp1.1\WebDemo.deps.json
+E:\Tai lieu\WebDemo\WebDemo\bin\Debug\netcoreapp1.1\WebDemo.runtimeconfig.json
+E:\Tai lieu\WebDemo\WebDemo\bin\Debug\netcoreapp1.1\WebDemo.runtimeconfig.dev.json
+E:\Tai lieu\WebDemo\WebDemo\bin\Debug\netcoreapp1.1\WebDemo.dll
+E:\Tai lieu\WebDemo\WebDemo\bin\Debug\netcoreapp1.1\WebDemo.pdb
+E:\Tai lieu\WebDemo\WebDemo\bin\Debug\netcoreapp1.1\EntityModel.dll
+E:\Tai lieu\WebDemo\WebDemo\bin\Debug\netcoreapp1.1\EntityModel.pdb
+E:\Tai lieu\WebDemo\WebDemo\obj\Debug\netcoreapp1.1\WebDemo.csprojResolveAssemblyReference.cache
+E:\Tai lieu\WebDemo\WebDemo\obj\Debug\netcoreapp1.1\WebDemo.AssemblyInfo.cs
+E:\Tai lieu\WebDemo\WebDemo\obj\Debug\netcoreapp1.1\WebDemo.dll
+E:\Tai lieu\WebDemo\WebDemo\obj\Debug\netcoreapp1.1\WebDemo.pdb

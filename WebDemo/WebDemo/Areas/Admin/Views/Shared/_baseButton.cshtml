@@ -1,0 +1,13 @@
+﻿<form class="form-horizontal">
+    <div class="box-body">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popupModal" data-whatever="getbootstrap" data-content="Thêm mới" onclick="_insert(event)">Thêm mới</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popupModal" data-whatever="getbootstrap" data-content="Cập nhật" onclick="_update(this, event)">Cập nhật</button>
+                <button type="button" class="btn btn-primary" onclick="_delete(this, event)">Xóa</button>
+                <button type="button" class="btn btn-primary" onclick="_refresh(event)">Làm mới</button>
+            </div>
+        </div>
+        <div class="modal fade" id="popupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"></div>
+    </div>
+</form>

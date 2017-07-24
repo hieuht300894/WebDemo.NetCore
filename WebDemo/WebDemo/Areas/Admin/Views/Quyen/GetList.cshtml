@@ -1,0 +1,39 @@
+﻿@using System.Collections.Generic;
+@using WebDemo.Module;
+
+@model IEnumerable<EntityModel.Models.xQuyen>
+
+@{
+    string clsName = "xQuyen";
+
+    <table id="datatable" class="table table-striped table-hover table-bordered">
+        <thead>
+            <tr>
+                <th class='text-center col-sm-1'>STT</th>
+                <th class='text-center'>@clsName.Translate("Code")</th>
+                <th class='text-center'>@clsName.Translate("Name")</th>
+                <th class='text-center col-sm-2'>Chức năng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 1;
+                foreach (var item in Model)
+                {
+                    <tr>
+                        @Html.Hidden("keyid", item.KeyID)
+                        @Html.Hidden("code", item.Code)
+                        <td class="text-center">@(i++)</td>
+                        <td>@item.Code</td>
+                        <td>@item.Name</td>
+                        <td class="text-center">
+                            <a href="#" onclick="_update(this, event)" style='color:#0026ff;font-weight:bold' data-toggle="modal" data-target="#popupModal" data-whatever="getbootstrap" data-content="Cập nhật"><i class="fa fa-fw fa-edit"></i>Sửa</a>
+                            <label> | </label>
+                            <a href="#" onclick="formatRow(); _delete(this, event)" style='color:#ff0000;font-weight:bold'><i class="fa fa-fw fa-remove"></i>Xóa</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}

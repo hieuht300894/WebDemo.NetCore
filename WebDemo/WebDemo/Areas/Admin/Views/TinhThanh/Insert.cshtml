@@ -1,0 +1,126 @@
+﻿@using EntityModel.Models;
+@using WebDemo.Module;
+
+@model eDM_TinhThanh
+
+@{
+    IList<eDM_TinhThanh> lstTinhThanh = (ViewBag.DSTinhThanh as IEnumerable<eDM_TinhThanh>).ToList();
+    Dictionary<int, string> lstLoaiTinhThanh = ViewBag.DSLoaiTinhThanh as Dictionary<int, string>;
+}
+
+@{
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header' style='text-align:center'>
+                <button type='button' class='close' data-dismiss='modal' aria-label='Đóng'>
+                    <span aria-hidden='true'>&times;</span>
+                </button>
+                <h2 class='modal-title' id='popupModalLabel'><b></b></h2>
+            </div>
+            <div class='modal-body'>
+                <div class="box box-info">
+                    <div class="box-header with-border"></div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    <form class="form-horizontal" id="frmEditor">
+                        <div class="box-body">
+                            <div class='form-group' hidden="hidden">
+                                <div class='col-sm-9'><input class="form-control" type='text' name='keyid' value='0' /></div>
+                            </div>
+                            @*<div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align:left">Mã</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type='text' name='ma' value='@Model.Ma' id="ma" />
+                                    <span></span>
+                                </div>
+                            </div>*@
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align:left">Tên</label>
+                                <div class="col-sm-9">
+                                    <input class="form-control" type='text' name='ten' value='@Model.Ten' id="ten" />
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align:left">Loại</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" style="width: 100%;" name='idloai' id="idloai">
+                                        @foreach (var item in lstLoaiTinhThanh)
+                                        {
+                                            if (item.Key == 1)
+                                            {
+                                                <option value='@item.Key' selected="selected">@item.Value</option>
+                                            }
+                                            else
+                                            {
+                                                <option value='@item.Key'>@item.Value</option>
+                                            }
+                                        }
+                                    </select>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" style="text-align:left">Trực thuộc</label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" style="width: 100%;" id="filter_idloai">
+                                        @foreach (var item in lstLoaiTinhThanh)
+                                        {
+                                            <option value='@item.Key'>@item.Value</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select class="form-control" name="idtinhthanh" id="idtinhthanh"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <div class="margin pull-right">
+                                @*<button type='button' class='btn btn-primary' data-dismiss='modal' onclick='_save(this, event, @Model.KeyID)'>Lưu</button>*@
+                                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Hủy bỏ</button>
+                                <button type='button' class='btn btn-primary' onclick='_saveAndAdd(this, event,@Model.KeyID)'>Lưu</button>
+                            </div>
+                        </div>
+                        <!-- /.box-footer -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $('#filter_idloai').ready(function () {
+        loadTinhThanh();
+    });
+    $('#filter_idloai').change(function () {
+        loadTinhThanh();
+    });
+
+    function loadTinhThanh() {
+        var idloai = $('#filter_idloai').val();
+
+        $.ajax({
+            ContentType: 'application/html;charset=utf-8',
+            url: url + controller + '/tinhthanhbyidloai',
+            data: {
+                idloai: idloai
+            },
+            dataType: 'html',
+            type: 'GET',
+            success: function (result) {
+                var objs = JSON.parse(result);
+                $('select[name=idtinhthanh]').empty();
+
+                if (objs.length == 0)
+                    $('select[name=idtinhthanh]').append('<option value="0"></option>');
+
+                $.each(objs, function () {
+                    $('select[name=idtinhthanh]').append('<option value="' + this.keyID + '">' + this.ten + '</option>');
+                });
+            }
+        });
+    }
+</script>
