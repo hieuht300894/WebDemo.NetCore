@@ -11,7 +11,7 @@ using System.Linq;
 
 namespace WebDemo.Areas.Admin.Controllers
 {
-    public class NhanVienController : BaseViewController<xNhanVien>
+    public class NhanVienController : BaseController<xNhanVien>
     {
         private IRepository<xNhanVien> repo;
 

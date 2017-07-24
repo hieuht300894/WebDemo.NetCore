@@ -7,7 +7,7 @@ using WebDemo.Services;
 
 namespace WebDemo.Areas.Admin.Controllers
 {
-    public class PhanQuyenController : BaseViewController<xPhanQuyen>
+    public class PhanQuyenController : BaseController<xPhanQuyen>
     {
         public PhanQuyenController(IRepository<xPhanQuyen> repository, IRepositoryCollection repositories) :
             base(repository, repositories)

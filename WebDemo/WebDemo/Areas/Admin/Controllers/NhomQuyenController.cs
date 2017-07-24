@@ -7,7 +7,7 @@ using WebDemo.Services;
 
 namespace WebDemo.Areas.Admin.Controllers
 {
-    public class NhomQuyenController : BaseViewController<xNhomQuyen>
+    public class NhomQuyenController : BaseController<xNhomQuyen>
     {
         public NhomQuyenController(IRepository<xNhomQuyen> repository, IRepositoryCollection repositories) :
             base(repository, repositories)

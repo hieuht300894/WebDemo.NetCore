@@ -1,4 +1,4 @@
-@{
+﻿@{
     Layout = "~/Areas/Admin/Views/Shared/_layout.cshtml";
     @model IEnumerable<EntityModel.Models.eDM_TinhThanh>
     Dictionary<int, string> lstLoaiTinhThanh = ViewBag.DSLoaiTinhThanh as Dictionary<int, string>;
@@ -58,8 +58,7 @@
             </div>
         </div>
     </form>
-    <div class="box-body" id="table_content">
-    </div>
+    <div class="box-body" id="table_content"></div>
 </div>
 
 @section footer{
@@ -137,6 +136,64 @@
                     }
                 }
             });
+        }
+        function _delete(element, e) {
+            contructerJQuery();
+
+            var id = undefined;
+
+            var fcus = $(element).closest('tr');
+            if (fcus.prop('tagName') == undefined) {
+                var row = $('#datatable tbody tr').filter('.selected');
+                if ($(row).index() != -1) {
+                    id = row.find('input[name=keyid]').val();
+                }
+            }
+            else {
+                id = fcus.find('input[name=keyid]').val();
+            }
+
+            if (id == undefined) {
+                $.confirm({
+                    title: '',
+                    content: 'Không tìm thấy dữ liệu',
+                    buttons: {
+                        cancel: {
+                            text: 'Hủy bỏ',
+                            action: function () {
+                            }
+                        }
+                    }
+                });
+            }
+            else {
+                $.confirm({
+                    title: '',
+                    content: 'Xác nhận xóa dữ liệu?',
+                    buttons: {
+                        cancel: {
+                            text: 'Hủy bỏ',
+                            action: function () {
+                            }
+                        },
+                        confirm: {
+                            text: 'Xác nhận',
+                            action: function () {
+                                $.ajax({
+                                    url: url + controller + url_Delete,
+                                    data: { id: id },
+                                    dataType: 'html',
+                                    type: 'DELETE',
+                                    ContentType: 'application/html;charset=utf-8',
+                                    success: function (result) {
+                                        loadData();
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
+            }
         }
     </script>
 }

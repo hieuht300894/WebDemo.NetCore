@@ -18,6 +18,12 @@ namespace WebDemo.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        public virtual IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
         [Route("listitem/{id?}")]
         public virtual IEnumerable<T> GetListItems([FromQuery] int[] ids)
         {
@@ -33,8 +39,32 @@ namespace WebDemo.Areas.Admin.Controllers
 
         }
 
+        [HttpGet]
+        [Route("danhsach/{id?}")]
+        public virtual IActionResult GetList([FromQuery] int[] ids)
+        {
+            return PartialView(repository.GetAll());
+        }
+
+        [HttpGet]
+        [Route("themmoi/{id?}")]
+        public virtual IActionResult Insert()
+        {
+            return PartialView(new T());
+        }
+
+        [HttpGet]
+        [Route("capnhat/{id?}")]
+        public virtual IActionResult Update(int id)
+        {
+            T item = DetailItem(id);
+            if (item == null)
+                return NotFound();
+            return PartialView(item);
+        }
+
         [HttpPost]
-        [Route("insertitem")]
+        [Route("themmoi")]
         public virtual IActionResult InsertItem([FromBody] T item)
         {
             if (item == null)
@@ -48,7 +78,7 @@ namespace WebDemo.Areas.Admin.Controllers
         }
 
         [HttpPut]
-        [Route("edititem")]
+        [Route("capnhat")]
         public virtual IActionResult UpdateItem([FromBody] T item)
         {
             if (item == null)
@@ -62,7 +92,7 @@ namespace WebDemo.Areas.Admin.Controllers
         }
 
         [HttpDelete]
-        [Route("removeitem")]
+        [Route("xoa")]
         public virtual IActionResult DeleteItem(int id)
         {
             if (id == 0)

@@ -11,7 +11,7 @@ using WebDemo.Module;
 
 namespace WebDemo.Areas.Admin.Controllers
 {
-    public class TinhThanhController : BaseViewController<eDM_TinhThanh>
+    public class TinhThanhController : BaseController<eDM_TinhThanh>
     {
         private IRepository<eDM_TinhThanh> repository;
         public TinhThanhController(IRepository<eDM_TinhThanh> repository, IRepositoryCollection repositories) : base(repository, repositories)

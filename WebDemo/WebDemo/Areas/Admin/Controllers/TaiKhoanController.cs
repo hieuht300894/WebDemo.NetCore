@@ -10,7 +10,7 @@ using WebDemo.Services;
 
 namespace WebDemo.Areas.Admin.Controllers
 {
-    public class TaiKhoanController : BaseViewController<xTaiKhoan>
+    public class TaiKhoanController : BaseController<xTaiKhoan>
     {
         private IRepository<xTaiKhoan> repoTaiKhoan;
         private IRepository<xNhanVien> repoNhanVien;

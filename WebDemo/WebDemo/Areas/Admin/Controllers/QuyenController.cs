@@ -10,7 +10,7 @@ using WebDemo.Services;
 
 namespace WebDemo.Areas.Admin.Controllers
 {
-    public class QuyenController : BaseViewController<xQuyen>
+    public class QuyenController : BaseController<xQuyen>
     {
         private IRepository<xQuyen> repository;
 

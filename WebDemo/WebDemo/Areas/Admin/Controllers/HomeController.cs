@@ -5,7 +5,7 @@ using WebDemo.Services;
 
 namespace WebDemo.Areas.Admin.Controllers
 {
-    public class HomeController : BaseViewController<xNhanVien>
+    public class HomeController : BaseController<xNhanVien>
     {
         public HomeController(IRepository<xNhanVien> repository, IRepositoryCollection repositories) : 
             base(repository, repositories)
