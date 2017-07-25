@@ -1,6 +1,7 @@
-﻿var click_Color = '#92e1ec';
+﻿var click_Color = '#34acf3';
 var odd_Color = '#f5f5f5';
 var even_Color = '#fff';
+var text_Color = '#fff';
 
 function customTable() {
     contructerJQuery();
@@ -8,6 +9,7 @@ function customTable() {
     var oTable = $('#datatable');
 
     oTable.dataTable({
+        processing: true,
         paging: true,
         lengthChange: true,
         searching: true,
@@ -57,13 +59,13 @@ function formatRow() {
     var row = $('#datatable tbody').find('tr');
     if ($(row).filter('.selected').index() == -1) {
         $(row[0]).addClass('selected');
-        $(row[0]).attr('style', 'background-color:' + click_Color);
+        $(row[0]).attr('style', 'background-color:' + click_Color + ";color:" + text_Color);
     }
 
     $('#datatable tbody').on('click', 'tr', function () {
         $('#datatable tbody').find('tr').removeAttr('style');
         $('#datatable tbody').find('tr.selected').removeClass('selected');
         $(this).addClass('selected');
-        $(this).attr('style', 'background-color:' + click_Color);
+        $(this).attr('style', 'background-color:' + click_Color + ";color:" + text_Color);
     });
 }
