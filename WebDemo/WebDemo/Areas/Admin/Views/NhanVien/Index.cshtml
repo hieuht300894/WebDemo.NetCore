@@ -15,6 +15,7 @@
 <link rel='stylesheet' href='~/Admin/dist/css/AdminLTE.min.css'>
 <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
 <link rel='stylesheet' href='~/Admin/dist/css/skins/_all-skins.min.css'>
+<link href="~/Admin/ShieldUI/css/light/all.min.css" rel="stylesheet" />
 
 <!-- jQuery 2.2.3 -->
 <script src="~/Admin/plugins/jQuery/jquery-2.2.3.min.js"></script>
@@ -33,7 +34,7 @@
 <script src='~/Admin/dist/js/demo.js'></script>
 <!-- jquery-confirm files -->
 <script type="text/javascript" src="~/Admin/js/js-confirm/js/jquery-confirm.js"></script>
-
+<script src="~/Admin/ShieldUI/js/shieldui-all.min.js"></script>
 
 <div class="box">
     @{Html.RenderPartial("_baseButton");}
@@ -44,12 +45,11 @@
     <script>var controller = '/nhanvien';</script>
     <script src="~/Admin/js/js-custom/mainfuction.js"></script>
     <script src="~/Admin/js/js-custom/my_custom_datatable.js"></script>
+    <script src="https://demos.shieldui.com/Content/Json/gridData.js"></script>
     <script>
         $(document).ready(function () {
             _reload($('#table_content'));
             customTable();
         });
-
     </script>
-
 }

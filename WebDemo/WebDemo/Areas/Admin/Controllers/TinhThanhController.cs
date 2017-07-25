@@ -28,6 +28,12 @@ namespace WebDemo.Areas.Admin.Controllers
             return base.Index();
         }
 
+        public override IEnumerable<eDM_TinhThanh> GetListItems([FromQuery] int[] ids)
+        {
+            int id = ids.Length > 0 ? ids[0] : 0;
+            return repository.GetAll().Where(x => x.IDLoai == id);
+        }
+
         public override IActionResult GetList([FromQuery] int[] ids)
         {
             int id = ids.Length > 0 ? ids[0] : 0;
