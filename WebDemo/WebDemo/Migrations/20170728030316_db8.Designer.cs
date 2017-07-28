@@ -8,9 +8,10 @@ using WebDemo.Model;
 namespace WebDemo.Migrations
 {
     [DbContext(typeof(zModel))]
-    partial class zModelModelSnapshot : ModelSnapshot
+    [Migration("20170728030316_db8")]
+    partial class db8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
