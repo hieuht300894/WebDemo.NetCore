@@ -56,7 +56,7 @@
         </div>
     </form>
     <div class="box-body" id="table_content">
-        @*<table id="datatable" class="display nowrap" cellspacing="0" style="width:100%">
+        <table id="datatable" class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
                     <th class='text-center col-sm-1'>STT</th>
@@ -65,7 +65,7 @@
                     <th class='text-center col-sm-2'>Chức năng</th>
                 </tr>
             </thead>
-        </table>*@
+        </table>
     </div>
 </div>
 @section footer{
@@ -73,61 +73,7 @@
     <script src="~/Admin/js/js-custom/mainfuction.js"></script>
     <script src="~/Admin/js/js-custom/my_custom_datatable.js"></script>
     <script>
-        //$(document).ready(function () {
-        //    loadData();
-        //    $('#idloai_index_filter').change(function () {
-        //        loadData();
-        //    });
-        //});
-        //function loadData() {
-        //    contructerJQuery();
-        //    var element = $('#datatable');
-        //    var cbbLoai = $('#idloai_index_filter');
-        //    var id = cbbLoai.val();
-        //    $.ajax({
-        //        ContentType: 'application/html;charset=utf-8',
-        //        url: url + controller + '/listitem?ids=' + id,
-        //        dataType: 'html',
-        //        type: 'GET',
-        //        success: function (result) {
-        //            //$(element).find('tbody').empty();
-        //            setData(result);
-        //        }
-        //    });
-        //}
-        //function setData(result) {
-        //    var out = [];
-        //    var objs = JSON.parse(result);
-        //    for (var i = 0; i < objs.length; i++) {
-        //        out.push([(i + 1), objs[i].ten, objs[i].loai, '']);
-        //    }
-
-        //    if ($.fn.dataTable.isDataTable('#datatable')) {
-        //        var table = $('#datatable').dataTable().api();
-        //        table.clear();
-        //    }
-        //    else {
-        //        $('#datatable').DataTable({
-        //            serverSide: true,
-        //            ordering: false,
-        //            searching: false,
-        //            ajax: function (data, callback, settings) {
-        //                setTimeout(function () {
-        //                    callback({
-        //                        draw: data.draw,
-        //                        data: out,
-        //                        recordsTotal: objs.length,
-        //                        recordsFiltered: objs.length
-        //                    });
-        //                }, 50);
-        //            },
-        //            scrollY: 600,
-        //            scroller: {
-        //                loadingIndicator: true
-        //            },
-        //        });
-        //    }
-        //}
+        var table = null;
 
         $(document).ready(function () {
             loadData();
@@ -142,121 +88,159 @@
             var id = cbbLoai.val();
             $.ajax({
                 ContentType: 'application/html;charset=utf-8',
-                url: url + controller + '/danhsach?ids=' + id,
+                url: url + controller + '/listitem?ids=' + id,
                 dataType: 'html',
                 type: 'GET',
                 success: function (result) {
-                    element.empty();
-                    element.html(result);
-                    customTable();
-                }
-            });
-        }
-        function _saveAndAdd(element, e, id) {
-            e.preventDefault();
-            contructerJQuery();
+                    var data = [];
+                    for (var i = 0; i < 50000; i++) {
+                        data.push([ i, i, i, i ]);
+                    }
 
-            var result = [];
-
-            var txts = $('#frmEditor').find('input');
-            for (var i = 0; i < txts.length; i++) {
-                var obj = {
-                    name: $(txts[i]).attr('name'),
-                    value: $(txts[i]).val()
-                };
-                result.push(obj);
-            }
-
-            var cbbs = $('#frmEditor').find('select');
-            for (var i = 0; i < cbbs.length; i++) {
-                var obj = {
-                    name: $(cbbs[i]).attr('name'),
-                    value: $(cbbs[i]).val()
-                };
-                result.push(obj);
-            }
-
-            var jResult = {};
-            $.each(result, function () {
-                if (this.name != undefined)
-                    jResult[this.name] = this.value;
-            });
-
-            $.ajax({
-                url: url + controller + (id == 0 ? url_Insert : url_Update),
-                data: JSON.stringify(jResult),
-                dataType: 'JSON',
-                type: id == 0 ? 'POST' : 'PUT',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json;charset=utf-8'
-                },
-                success: function (result) {
-                    var isValid = validation(result);
-                    if (isValid) {
-                        loadData();
-                        _insert(event);
+                    var objs = JSON.parse(result);
+                    var arr = [];
+                    for (var i = 0; i < objs.length; i++) {
+                        //arr.push([{ 'STT': (i + 1) }, { 'Ten': objs[i].ten }, { 'Loai': objs[i].loai }, {'ChucNang':''}]);
+                        arr.push([(i + 1), objs[i].ten, objs[i].loai, '']);
+                    }
+                   
+                    if (table == null) {
+                        table = $('#datatable').dataTable({
+                            data: data
+                        });
                     }
                 }
             });
         }
-        function _delete(element, e) {
-            contructerJQuery();
 
-            var id = undefined;
+        //$(document).ready(function () {
+        //    loadData();
+        //    $('#idloai_index_filter').change(function () {
+        //        loadData();
+        //    });
+        //});
+        //function loadData() {
+        //    contructerJQuery();
+        //    var element = $('#table_content');
+        //    var cbbLoai = $('#idloai_index_filter');
+        //    var id = cbbLoai.val();
+        //    $.ajax({
+        //        ContentType: 'application/html;charset=utf-8',
+        //        url: url + controller + '/danhsach?ids=' + id,
+        //        dataType: 'html',
+        //        type: 'GET',
+        //        success: function (result) {
+        //            element.empty();
+        //            element.html(result);
+        //            customTable();
+        //        }
+        //    });
+        //}
+        //function _saveAndAdd(element, e, id) {
+        //    e.preventDefault();
+        //    contructerJQuery();
 
-            var fcus = $(element).closest('tr');
-            if (fcus.prop('tagName') == undefined) {
-                var row = $('#datatable tbody tr').filter('.selected');
-                if ($(row).index() != -1) {
-                    id = row.find('input[name=keyid]').val();
-                }
-            }
-            else {
-                id = fcus.find('input[name=keyid]').val();
-            }
+        //    var result = [];
 
-            if (id == undefined) {
-                $.confirm({
-                    title: '',
-                    content: 'Không tìm thấy dữ liệu',
-                    buttons: {
-                        cancel: {
-                            text: 'Hủy bỏ',
-                            action: function () {
-                            }
-                        }
-                    }
-                });
-            }
-            else {
-                $.confirm({
-                    title: '',
-                    content: 'Xác nhận xóa dữ liệu?',
-                    buttons: {
-                        cancel: {
-                            text: 'Hủy bỏ',
-                            action: function () {
-                            }
-                        },
-                        confirm: {
-                            text: 'Xác nhận',
-                            action: function () {
-                                $.ajax({
-                                    url: url + controller + url_Delete,
-                                    data: { id: id },
-                                    dataType: 'html',
-                                    type: 'DELETE',
-                                    ContentType: 'application/html;charset=utf-8',
-                                    success: function (result) {
-                                        loadData();
-                                    }
-                                });
-                            }
-                        }
-                    }
-                });
-            }
-        }
+        //    var txts = $('#frmEditor').find('input');
+        //    for (var i = 0; i < txts.length; i++) {
+        //        var obj = {
+        //            name: $(txts[i]).attr('name'),
+        //            value: $(txts[i]).val()
+        //        };
+        //        result.push(obj);
+        //    }
+
+        //    var cbbs = $('#frmEditor').find('select');
+        //    for (var i = 0; i < cbbs.length; i++) {
+        //        var obj = {
+        //            name: $(cbbs[i]).attr('name'),
+        //            value: $(cbbs[i]).val()
+        //        };
+        //        result.push(obj);
+        //    }
+
+        //    var jResult = {};
+        //    $.each(result, function () {
+        //        if (this.name != undefined)
+        //            jResult[this.name] = this.value;
+        //    });
+
+        //    $.ajax({
+        //        url: url + controller + (id == 0 ? url_Insert : url_Update),
+        //        data: JSON.stringify(jResult),
+        //        dataType: 'JSON',
+        //        type: id == 0 ? 'POST' : 'PUT',
+        //        headers: {
+        //            'Accept': 'application/json',
+        //            'Content-Type': 'application/json;charset=utf-8'
+        //        },
+        //        success: function (result) {
+        //            var isValid = validation(result);
+        //            if (isValid) {
+        //                loadData();
+        //                _insert(event);
+        //            }
+        //        }
+        //    });
+        //}
+        //function _delete(element, e) {
+        //    contructerJQuery();
+
+        //    var id = undefined;
+
+        //    var fcus = $(element).closest('tr');
+        //    if (fcus.prop('tagName') == undefined) {
+        //        var row = $('#datatable tbody tr').filter('.selected');
+        //        if ($(row).index() != -1) {
+        //            id = row.find('input[name=keyid]').val();
+        //        }
+        //    }
+        //    else {
+        //        id = fcus.find('input[name=keyid]').val();
+        //    }
+
+        //    if (id == undefined) {
+        //        $.confirm({
+        //            title: '',
+        //            content: 'Không tìm thấy dữ liệu',
+        //            buttons: {
+        //                cancel: {
+        //                    text: 'Hủy bỏ',
+        //                    action: function () {
+        //                    }
+        //                }
+        //            }
+        //        });
+        //    }
+        //    else {
+        //        $.confirm({
+        //            title: '',
+        //            content: 'Xác nhận xóa dữ liệu?',
+        //            buttons: {
+        //                cancel: {
+        //                    text: 'Hủy bỏ',
+        //                    action: function () {
+        //                    }
+        //                },
+        //                confirm: {
+        //                    text: 'Xác nhận',
+        //                    action: function () {
+        //                        $.ajax({
+        //                            url: url + controller + url_Delete,
+        //                            data: { id: id },
+        //                            dataType: 'html',
+        //                            type: 'DELETE',
+        //                            ContentType: 'application/html;charset=utf-8',
+        //                            success: function (result) {
+        //                                loadData();
+        //                            }
+        //                        });
+        //                    }
+        //                }
+        //            }
+        //        });
+        //    }
+        //}
     </script>
 }
