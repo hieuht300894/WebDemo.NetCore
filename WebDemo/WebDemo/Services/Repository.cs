@@ -4,6 +4,7 @@ using System.Linq;
 using WebDemo.Model;
 using WebDemo.Module;
 using System;
+using System.Data.SqlClient;
 
 namespace WebDemo.Services
 {
@@ -67,15 +68,31 @@ namespace WebDemo.Services
             }
             catch { return null; }
         }
+
+        public List<T> GetAllV2(string ConnectionString, string ProcName, params object[] objs)
+        {
+            try
+            {
+                string sql = "exec " + ProcName;
+                for (int i = 0; i < objs.Length; i++) { sql += " {" + i + "},"; }
+                sql = sql.TrimEnd(',');
+                List<T> lstResult = new List<T>(entity.FromSql(sql, objs));
+                return lstResult;
+            }
+            catch (Exception ex) { return new List<T>(); }
+        }
+
     }
 
     public class RepositoryCollection : IRepositoryCollection
     {
         private zModel db;
+
         public RepositoryCollection(zModel db)
         {
             this.db = db;
         }
+
         public Repository<T> GetRepository<T>() where T : class, new()
         {
             return new Repository<T>(db);

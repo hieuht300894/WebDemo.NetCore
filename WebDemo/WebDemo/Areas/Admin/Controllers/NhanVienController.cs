@@ -26,6 +26,8 @@ namespace WebDemo.Areas.Admin.Controllers
             ViewBag.TieuDe = "Trang quản lý admin";
             ViewBag.TenDanhMuc = "Danh mục nhân viên";
             ViewBag.ChucNang = "";
+
+            var res = repo.GetAllV2(string.Empty, "sp_Search", 1);
             return base.Index();
         }
 

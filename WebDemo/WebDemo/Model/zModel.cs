@@ -68,7 +68,6 @@ namespace WebDemo.Model
             //modelBuilder.Entity<eDM_TinhThanh>().Property(x => x.Ma).IsRequired();
             modelBuilder.Entity<eDM_TinhThanh>().Property(x => x.Ten).IsRequired();
             #endregion
-
         }
     }
 }
