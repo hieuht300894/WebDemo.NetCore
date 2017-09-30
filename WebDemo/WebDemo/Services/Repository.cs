@@ -79,7 +79,7 @@ namespace WebDemo.Services
                 List<T> lstResult = new List<T>(entity.FromSql(sql, objs));
                 return lstResult;
             }
-            catch (Exception ex) { return new List<T>(); }
+            catch { return new List<T>(); }
         }
 
     }
